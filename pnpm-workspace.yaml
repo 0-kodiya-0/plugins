@@ -1,0 +1,7 @@
+packages:
+  - esbuild/*
+  - vite/*
+  - vscode/*
+
+ignoredBuiltDependencies:
+  - esbuild
