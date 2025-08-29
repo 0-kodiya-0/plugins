@@ -9,18 +9,18 @@
     "README.md"
   ],
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run types",
+    "build": "pnpm run clean && pnpm run compile && pnpm run types",
     "clean": "rimraf dist",
     "compile": "esbuild src/index.ts --bundle --platform=node --target=node16 --format=cjs --outfile=dist/index.js --external:esbuild",
     "types": "tsc --emitDeclarationOnly",
-    "dev": "npm run compile -- --watch",
+    "dev": "pnpm run compile -- --watch",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build && npm run test"
+    "prepublishOnly": "pnpm run build && pnpm run test"
   },
   "keywords": [
     "esbuild",
@@ -49,13 +49,5 @@
   },
   "engines": {
     "node": ">=16.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/0-kodiya-0/esbuild-plugin-remove-code.git"
-  },
-  "bugs": {
-    "url": "https://github.com/0-kodiya-0/esbuild-plugin-remove-code/issues"
-  },
-  "homepage": "https://github.com/0-kodiya-0/esbuild-plugin-remove-code#readme"
+  }
 }

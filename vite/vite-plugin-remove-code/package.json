@@ -19,17 +19,17 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:types",
+    "build": "pnpm run clean && pnpm run build:esm && pnpm run build:cjs && pnpm run build:types",
     "build:esm": "esbuild src/index.ts --bundle --platform=node --target=node16 --format=esm --outfile=dist/index.mjs --external:vite",
     "build:cjs": "esbuild src/index.ts --bundle --platform=node --target=node16 --format=cjs --outfile=dist/index.js --external:vite",
     "build:types": "tsc --emitDeclarationOnly",
     "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('dist')) fs.rmSync('dist', { recursive: true });\"",
-    "dev": "npm run build -- --watch",
+    "dev": "pnpm run build -- --watch",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "pnpm run build && pnpm test"
   },
   "keywords": [
     "vite",
@@ -45,14 +45,6 @@
   ],
   "author": "Sanithu Jayakody <sanithujayafiverr@gmail.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/0-kodiya-0/vite-plugin-remove-code.git"
-  },
-  "bugs": {
-    "url": "https://github.com/0-kodiya-0/vite-plugin-remove-code/issues"
-  },
-  "homepage": "https://github.com/0-kodiya-0/vite-plugin-remove-code#readme",
   "peerDependencies": {
     "vite": "^6.3.5"
   },
