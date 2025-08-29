@@ -2,21 +2,25 @@
   "name": "plugins",
   "version": "1.0.0",
   "description": "A collection of build tools and VS Code extensions for conditional code removal and development workflow optimization.",
-  "main": "index.js",
   "packageManager": "pnpm@10.13.1",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "test": "turbo run test",
-    "lint": "turbo run lint",
-    "lint:fix": "turbo run lint:fix",
-    "typecheck": "turbo run typecheck",
-    "clean": "turbo run clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "turbo run build lint test && changeset publish"
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r run dev",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint",
+    "lint:fix": "pnpm -r run lint:fix",
+    "typecheck": "pnpm -r run typecheck",
+    "clean": "pnpm -r run clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "build:esbuild": "pnpm --filter esbuild-plugin-remove-code run build",
+    "build:vite": "pnpm --filter vite-plugin-remove-code run build",
+    "build:vscode": "pnpm --filter code-removal-comments run build",
+    "test:esbuild": "pnpm --filter esbuild-plugin-remove-code run test",
+    "test:vite": "pnpm --filter vite-plugin-remove-code run test"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
   },
   "repository": {
     "type": "git",
@@ -35,9 +39,8 @@
     "url": "https://github.com/0-kodiya-0/plugins/issues"
   },
   "homepage": "https://github.com/0-kodiya-0/plugins#readme",
-  "devDependencies": {
-    "@changesets/cli": "^2.29.6",
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.6"
+  "engines": {
+    "node": ">=23.9.0",
+    "pnpm": ">=10.13.1"
   }
 }
