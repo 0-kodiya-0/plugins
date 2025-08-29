@@ -127,9 +127,9 @@ export function removeCodePlugin(options: RemoveCodeOptions = {}): Plugin {
       // Remove multi-line blocks /* PATTERN_START */ ... /* PATTERN_END */
       const multiLineRegex = new RegExp(
         `\\/\\*\\s*${escapeRegex(config.patterns.multiLineStart)}\\s*\\*\\/[\\s\\S]*?\\/\\*\\s*${escapeRegex(
-          config.patterns.multiLineEnd,
+          config.patterns.multiLineEnd
         )}\\s*\\*\\/`,
-        'g',
+        'g'
       );
       const multiLineMatch = transformedCode.match(multiLineRegex);
       if (multiLineMatch) {
@@ -141,9 +141,9 @@ export function removeCodePlugin(options: RemoveCodeOptions = {}): Plugin {
       // Remove single-line blocks // PATTERN_START ... // PATTERN_END
       const singleLineBlockRegex = new RegExp(
         `\\/\\/\\s*${escapeRegex(config.patterns.singleLineStart)}[\\s\\S]*?\\/\\/\\s*${escapeRegex(
-          config.patterns.singleLineEnd,
+          config.patterns.singleLineEnd
         )}`,
-        'g',
+        'g'
       );
       const singleLineBlockMatch = transformedCode.match(singleLineBlockRegex);
       if (singleLineBlockMatch) {
@@ -153,7 +153,10 @@ export function removeCodePlugin(options: RemoveCodeOptions = {}): Plugin {
       }
 
       // Remove single lines // PATTERN
-      const singleLineRegex = new RegExp(`^.*\\/\\/\\s*${escapeRegex(config.patterns.singleLine)}.*$`, 'gm');
+      const singleLineRegex = new RegExp(
+        `^.*\\/\\/\\s*${escapeRegex(config.patterns.singleLine)}.*$`,
+        'gm'
+      );
       const singleLineMatch = transformedCode.match(singleLineRegex);
       if (singleLineMatch) {
         log('Removing single lines:', singleLineMatch.length);
