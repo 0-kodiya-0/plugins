@@ -1,0 +1,11 @@
+name: "react-setup"
+description: "Sets up a new React project with TypeScript and common development tools"
+
+args:
+  project-name: "Name of the React project to create"
+
+commands:
+  - "npm create vite@latest ARG-1 -- --template react-ts"
+  - "cd ARG-1 && npm install"
+  - "cd ARG-1 && npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin"
+  - "cd ARG-1 && npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier"

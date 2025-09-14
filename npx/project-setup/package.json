@@ -1,0 +1,40 @@
+{
+  "name": "webdev-setup",
+  "version": "1.0.0",
+  "description": "CLI tool for setting up web development projects with commands and file operations",
+  "main": "dist/cli.js",
+  "bin": {
+    "webdev-setup": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx cli.ts",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/cli.js"
+  },
+  "keywords": [
+    "cli",
+    "webdev",
+    "setup",
+    "typescript",
+    "development"
+  ],
+  "license": "MIT",
+  "files": [
+    "dist/",
+    "src/setups/",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.3.3",
+    "esbuild": "^0.25.9",
+    "nodemon": "^3.1.10",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "commander": "^14.0.1",
+    "js-yaml": "^4.1.0"
+  }
+}
