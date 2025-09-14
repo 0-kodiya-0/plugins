@@ -11,7 +11,7 @@ const program = new Command();
 
 // Configure main program
 program
-  .name('webdev-setup')
+  .name('project-setup')
   .description('CLI tool for setting up web development projects with commands and file operations')
   .version('1.0.0');
 
@@ -32,9 +32,9 @@ if (!process.argv.slice(2).length) {
   console.log(chalk.bold.cyan('\n🛠️  WebDev Setup CLI\n'));
   program.outputHelp();
   console.log(chalk.dim('\nGet started:'));
-  console.log(chalk.dim('  webdev-setup list          # List available scripts'));
-  console.log(chalk.dim('  webdev-setup info <script> # Show script details'));
-  console.log(chalk.dim('  webdev-setup run <script>  # Run a setup script\n'));
+  console.log(chalk.dim('  project-setup list          # List available scripts'));
+  console.log(chalk.dim('  project-setup info <script> # Show script details'));
+  console.log(chalk.dim('  project-setup run <script>  # Run a setup script\n'));
 }
 
 // Handle global errors

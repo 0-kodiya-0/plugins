@@ -1,10 +1,10 @@
 {
-  "name": "webdev-setup",
+  "name": "project-setup",
   "version": "1.0.0",
   "description": "CLI tool for setting up web development projects with commands and file operations",
   "main": "dist/cli.js",
   "bin": {
-    "webdev-setup": "./dist/cli.js"
+    "project-setup": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsc",

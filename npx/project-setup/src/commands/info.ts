@@ -3,6 +3,7 @@ import { join } from 'path';
 import { ScriptRunner } from '../scriptRunner';
 import { ConsoleUtils } from '../utils/console';
 import { FileUtils } from '../utils/file';
+import { ERROR_CODES } from '../constants';
 
 export function createInfoCommand(): Command {
   return new Command('info')
@@ -38,9 +39,9 @@ export function createInfoCommand(): Command {
 
           const argNames = Object.keys(info.args);
           const argPlaceholders = argNames.map((_, i) => `<arg${i + 1}>`).join(' ');
-          ConsoleUtils.usage(`webdev-setup run ${scriptName} ${argPlaceholders}`);
+          ConsoleUtils.usage(`project-setup run ${scriptName} ${argPlaceholders}`);
         } else {
-          ConsoleUtils.usage(`webdev-setup run ${scriptName}`);
+          ConsoleUtils.usage(`project-setup run ${scriptName}`);
         }
 
         if (info.commands && info.commands.length > 0) {
@@ -79,7 +80,7 @@ export function createInfoCommand(): Command {
       } catch (error) {
         spinner.fail('Failed to load script information');
         ConsoleUtils.error(error instanceof Error ? error.message : String(error));
-        process.exit(1);
+        process.exit(ERROR_CODES.SCRIPT_NOT_FOUND);
       }
     });
 }

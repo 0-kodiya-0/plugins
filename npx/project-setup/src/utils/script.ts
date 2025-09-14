@@ -29,7 +29,7 @@ export class ScriptUtils {
       ConsoleUtils.error(`Expected ${requiredArgCount} arguments, but received ${providedArgCount}`);
       
       const argPlaceholders = argEntries.map((_, i) => `<arg${i + 1}>`).join(' ');
-      ConsoleUtils.usage(`webdev-setup run ${config.name} ${argPlaceholders}`);
+      ConsoleUtils.usage(`project-setup run ${config.name} ${argPlaceholders}`);
       
       throw new Error('Missing required arguments');
     }

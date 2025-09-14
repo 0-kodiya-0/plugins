@@ -4,6 +4,8 @@ import { ScriptConfig, ScriptInfo, ScriptListItem } from './types';
 import { ConsoleUtils } from './utils/console';
 import { FileUtils } from './utils/file';
 import { ScriptUtils } from './utils/script';
+import { ValidationUtils } from './utils/validation';
+import { MESSAGES } from './constants';
 
 export class ScriptRunner {
   constructor(
@@ -12,9 +14,14 @@ export class ScriptRunner {
   ) {}
 
   async executeScript(scriptName: string, targetDir: string, args: string[] = []): Promise<void> {
+    // Validate inputs
+    ValidationUtils.validateScriptName(scriptName);
+    ValidationUtils.validateTargetDirectory(targetDir);
+    ValidationUtils.validateArguments(args);
+
     const scriptPath = FileUtils.findScriptFile(this.scriptsDir, scriptName);
     if (!scriptPath) {
-      throw new Error(`Script '${scriptName}' not found. Use 'webdev-setup list' to see available scripts.`);
+      throw new Error(MESSAGES.ERROR.SCRIPT_NOT_FOUND(scriptName));
     }
 
     ConsoleUtils.title(`🚀 Running script: ${scriptName}`);
@@ -26,13 +33,9 @@ export class ScriptRunner {
     
     // Parse and validate script configuration
     const config = FileUtils.parseScriptFile(scriptPath);
+    ValidationUtils.validateScriptConfig(config);
     ScriptUtils.validateArguments(config, args);
     const processedConfig = ScriptUtils.processArguments(config, args);
-    
-    // Validate target directory exists
-    if (!existsSync(targetDir)) {
-      throw new Error(`Target directory '${targetDir}' does not exist`);
-    }
 
     // Execute commands
     if (processedConfig.commands && processedConfig.commands.length > 0) {

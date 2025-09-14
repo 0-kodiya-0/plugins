@@ -4,6 +4,7 @@ import { ScriptRunner } from '../scriptRunner';
 import { CommandOptions } from '../types';
 import { ConsoleUtils } from '../utils/console';
 import { FileUtils } from '../utils/file';
+import { ERROR_CODES, MESSAGES } from '../constants';
 
 export function createRunCommand(): Command {
   return new Command('run')
@@ -12,7 +13,7 @@ export function createRunCommand(): Command {
     .argument('[args...]', 'Arguments to pass to the script')
     .option('-t, --target <path>', 'Target directory for the setup', process.cwd())
     .action(async (scriptName: string, args: string[], options: CommandOptions) => {
-      const spinner = ConsoleUtils.createSpinner('Initializing script runner...');
+      const spinner = ConsoleUtils.createSpinner(MESSAGES.INFO.INITIALIZING);
       spinner.start();
 
       try {
@@ -29,11 +30,11 @@ export function createRunCommand(): Command {
         const runner = new ScriptRunner(scriptsDir, setupsDir);
         await runner.executeScript(scriptName, options.target, args);
 
-        ConsoleUtils.success(`Setup '${scriptName}' completed successfully!`);
+        ConsoleUtils.success(MESSAGES.SUCCESS.SCRIPT_COMPLETED(scriptName));
       } catch (error) {
         spinner.fail('Script execution failed');
         ConsoleUtils.error(error instanceof Error ? error.message : String(error));
-        process.exit(1);
+        process.exit(ERROR_CODES.EXECUTION_FAILED);
       }
     });
 }

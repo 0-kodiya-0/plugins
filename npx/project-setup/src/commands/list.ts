@@ -3,12 +3,13 @@ import { join } from 'path';
 import { ScriptRunner } from '../scriptRunner';
 import { ConsoleUtils } from '../utils/console';
 import { FileUtils } from '../utils/file';
+import { ERROR_CODES, MESSAGES } from '../constants';
 
 export function createListCommand(): Command {
   return new Command('list')
     .description('List all available setup scripts')
     .action(() => {
-      const spinner = ConsoleUtils.createSpinner('Loading available scripts...');
+      const spinner = ConsoleUtils.createSpinner(MESSAGES.INFO.LOADING_SCRIPTS);
       spinner.start();
 
       try {
@@ -42,11 +43,11 @@ export function createListCommand(): Command {
           ConsoleUtils.separator();
         });
 
-        ConsoleUtils.info(`Found ${scripts.length} script${scripts.length === 1 ? '' : 's'} available`);
+        ConsoleUtils.info(MESSAGES.INFO.SCRIPT_COUNT(scripts.length));
       } catch (error) {
         spinner.fail('Failed to load scripts');
         ConsoleUtils.error(error instanceof Error ? error.message : String(error));
-        process.exit(1);
+        process.exit(ERROR_CODES.DIRECTORY_NOT_FOUND);
       }
     });
 }
