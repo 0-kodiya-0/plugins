@@ -2,7 +2,7 @@ packages:
   - esbuild/esbuild-plugin-remove-code
   - vite/vite-plugin-remove-code
   - vscode/code-removal-comments
-  - npx/webdev-setup
+  - npx/project-setup
 
 ignoredBuiltDependencies:
   - esbuild
